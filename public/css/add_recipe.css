@@ -1,0 +1,59 @@
+.container{
+    background-color: rgb(236, 198, 164);
+    width: 60%;
+    text-align: center;
+    font-size: 18pt;
+    margin: auto;
+    margin-top: 3%;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    font-family: monospace;
+}
+
+#editProfileNav, #recipeNav {
+    width: 200px;
+}
+
+
+hr{
+    width: 80%;
+    margin-top: 10px;
+    border-color: black;
+    background-color: black;
+}
+
+.recipeName {
+    margin: 20px;
+}
+.recipeContent {
+    margin: 20px;
+}
+
+#upload{
+    background-color: rgb(78, 192, 78);
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+/* ----------- RESPONSIVE DESIGN - Adapt to mobile ------------ */
+@media (max-width: 1100px) {
+
+    .navbar ul {
+        flex-direction: column;
+        width: 75%;
+    }
+
+    .navbar ul li {
+        width: 300px;
+        margin: auto;
+        margin-left: 20px;
+        padding-right: 10px;
+    }
+
+    textarea{
+        width: 80%;
+        margin: auto;
+    }
+}

@@ -1,0 +1,99 @@
+.container{
+    background-color: rgb(236, 198, 164);
+    width: 50%;
+    text-align: left;
+    font-size: 18pt;
+    margin: auto;
+    margin-top: 7%;
+    border-radius: 10px;
+    padding: 5px;
+    padding-bottom: 50px;
+    box-shadow: 2px 2px 6px black;
+}
+
+
+hr{
+    width: 80%;
+    margin-top: 10px;
+    border-color: black;
+}
+
+.container div {
+    margin-left: 200px;
+    padding-top: 10px;
+}
+
+#newAccTitle{
+    text-align: center;
+}
+
+
+hr{
+    width: 80%;
+    margin-top: 10px;
+    border-color: black;
+}
+
+  
+  .avatars > input{
+    display: none;
+  }
+  
+  .avatars > input + img{
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .avatars > input:checked + img{
+    border: 2px solid red;
+    border-radius: 100%;
+  }
+
+.avatar-list-content{
+    display: flex;
+    justify-content: center;
+    margin-right: 300px;
+}
+
+
+.avatar-list-content *{
+    margin-left: 20px;
+}
+
+.avatar-label{
+    margin-top: 15px;
+}
+
+/* ----------- RESPONSIVE DESIGN - Adapt to mobile ------------ */
+@media (max-width: 1100px) {
+
+    .navbar{
+        margin-bottom: 50px;
+    }
+
+    .container div {
+        margin-left: 0px;
+        padding-top: 10px;
+        padding: 10px;
+        margin: auto;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .avatar-list-content{
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 0px;
+    }
+
+    div {
+        margin: auto;
+    }
+
+
+}
+

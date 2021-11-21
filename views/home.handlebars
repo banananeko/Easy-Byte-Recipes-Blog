@@ -1,0 +1,228 @@
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo"></a>
+    </div>
+
+</header>
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+            <li id="sortBy">Sort by
+                <ul>
+                    <li><a href="/?sortby=title">Title</a></li>
+                    <li><a href="/?sortby=username">Username</a></li>
+                    <li><a href="/">Date</a></li>
+                    <li id="category">
+                        Category
+                        <ul id="categoryList">
+                            <li class="subCat">Starters</li>
+                            <li class="subCat">Mains</li>
+                            <li class="subCat">Desserts</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#startersDiv">Starters</a></li>
+            <li><a href="#mainsDiv">Mains</a></li>
+            <li><a href="#dessertsDiv">Desserts</a></li>
+
+            {{#if user}}
+
+            <li id="recipeNav">My Recipes
+                <ul>
+                    <li><a href="/userhome#favRecipes">Favourites</a></li>
+                    <li><a href="/userhome#uploadedRecipes">Uploaded</a></li>
+                    <li><a href="./addrecipe">Add Recipe</a></li>
+                </ul>
+            </li>
+            {{/if}}
+        </div>
+
+
+        <div class="navRight">
+            {{#if user}} <li><a href="./login" class="loginButton"><img src="./avatars/{{user.avatar}}" width="50"
+                        width="50" title="Back to your profile page!">
+                </a></li>
+            {{else}}
+            <li><a href="./login" class="loginButton">Login</a></li>
+            {{/if}}
+            <li><a href="./logouthome" onclick="alert('Successfully logged out!')">Logout</a></li>
+
+
+        </div>
+</div>
+
+</ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    {{!-- Starters section --}}
+    <div id="startersDiv">
+
+        <div class="categoryImgDiv">
+            <img src="./images/bread.png" class="categoryImg">
+        </div>
+
+        <br>
+        <h1 class="categoryTitle">Starters</h1>
+
+        {{#each recipes_starters}}
+        <div class="starters">
+            <div class="left">
+                <h2 class="title">{{title}}</h2>
+                <img src="./images/{{image}}" class="foodImg">
+                <i id="username">posted by {{username}}</i>
+            </div>
+            <div class="right">
+                {{!-- Favorites button --}}
+                <div class="icons">
+                    {{#if userId}}
+                    <img class="add_remove_to_favourites heart" data-userid="{{userId}}" data-recipeid="{{recipeId}}"
+                        src="./images/full_heart.png"> <span>Remove from favourites</span>
+                    {{else}}
+                    <img class="add_remove_to_favourites heart" data-userid="" data-recipeid="{{recipeId}}"
+                        src="./images/empty_heart.png"> <span>Add to favourites</span>
+                    {{/if}}
+                    <br>
+                    <br>
+                    <img class="view_comment heart" data-recipeid="{{recipeId}}" src="./images/pencil.png"
+                        id="pencilIcon"> <span>Write comments</span>
+
+
+                </div>
+
+                <hr>
+
+                <div class="ingred">
+                    <ul>
+                        {{encodeMyString ingredients}}
+                    </ul>
+                </div>
+                <hr>
+                <div class="method">
+                    <ol>
+                        {{encodeMyString method}}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr class="bodyHr">
+        {{/each}}
+    </div>
+
+    {{!-- Mains section --}}
+    <div id="mainsDiv">
+
+        <div class="categoryImgDiv">
+            <img src="./images/chicken.png" class="categoryImg">
+        </div>
+
+        <h1 class="categoryTitle">Mains</h1>
+
+        {{#each recipes_mains}}
+        <div class="mains">
+            <div class="left">
+                <h2 class="title">{{title}}</h2>
+                <img src="./images/{{image}}" class="foodImg">
+                <i id="username">posted by {{username}}</i>
+            </div>
+            <div class="right">
+                {{!-- Favorites button --}}
+                <div class="icons">
+                    {{#if userId}}
+                    <img class="add_remove_to_favourites heart" data-userid="{{userId}}" data-recipeid="{{recipeId}}"
+                        src="./images/full_heart.png" title="Added to favourites"><span>Remove from favourites</span>
+                    {{else}}
+                    <img class="add_remove_to_favourites heart" data-userid="" data-recipeid="{{recipeId}}"
+                        src="./images/empty_heart.png" title="Removed from favourites"><span>Add to favourites</span>
+                    {{/if}}
+
+                    <br>
+                    <br>
+                    <img class="view_comment heart" data-recipeid="{{recipeId}}" src="./images/pencil.png"
+                        id="pencilIcon"> <span>Write comments</span>
+
+                </div>
+                <div class="ingred">
+                    <ul>
+                        {{encodeMyString ingredients}}
+                    </ul>
+                </div>
+                <hr>
+                <div class="method">
+                    <ol>
+                        {{encodeMyString method}}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr class="bodyHr">
+        {{/each}}
+    </div>
+
+    {{!-- Desserts Section --}}
+    <div id="dessertsDiv">
+
+        <div class="categoryImgDiv">
+            <img src="./images/cake.png" class="categoryImg">
+        </div>
+
+        <h1 class="categoryTitle">Desserts</h1>
+
+        {{#each recipes_desserts}}
+        <div class="desserts">
+            <div class="left">
+                <h2 class="title">{{title}}</h2>
+                <img src="./images/{{image}}" class="foodImg">
+                <i>posted by {{username}}</i>
+
+            </div>
+            <div class="right">
+                {{!-- Favorites button --}}
+                <div class="icons">
+                    {{#if userId}}
+                    <img class="add_remove_to_favourites heart" data-userid="{{userId}}" data-recipeid="{{recipeId}}"
+                        src="./images/full_heart.png" title="Added to favourites"><span>Remove from favourites</span>
+                    {{else}}
+                    <img class="add_remove_to_favourites heart" data-userid="" data-recipeid="{{recipeId}}"
+                        src="./images/empty_heart.png" title="Removed from favourites"><span>Add to favourites</span>
+                    {{/if}}
+
+                    <br>
+                    <br>
+                    <img class="view_comment heart" data-recipeid="{{recipeId}}" src="./images/pencil.png"
+                        id="pencilIcon"> <span>Write comments</span>
+                </div>
+                <div class="ingred">
+                    <ul>
+                        {{encodeMyString ingredients}}
+                    </ul>
+                </div>
+                <hr>
+                <div class="method">
+                    <ol>
+                        {{encodeMyString method}}
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr class="bodyHr">
+        {{/each}}
+    </div>
+
+
+
+
+    <div class="toTop"><a href="#"><img src="./images/arrow.png" id="arrow"></a>
+        <p id="toTopText">Back to <br> top</p>
+    </div>
+</div>

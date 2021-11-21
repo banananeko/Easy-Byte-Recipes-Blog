@@ -1,0 +1,157 @@
+<head>
+    <link rel="stylesheet" href="./css/user_home.css">
+</head>
+
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo" title="Return to the Easy Byte Homepage!"></a>
+    </div>
+</header>
+
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+
+            <li id="editProfileNav"><a href="./editprofile">Edit Profile</a></li>
+
+            <li id="recipeNav">My Recipes
+                <ul>
+                    <li><a href="#favRecipes">Favourites</a></li>
+                    <li><a href="#uploadedRecipes">Uploaded</a></li>
+                    <li><a href="./addrecipe">Add Recipe</a></li>
+                </ul>
+            </li>
+
+        </div>
+
+
+        <div class="navRight">
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+            <li><a href="./logouthome" onclick="alert('Successfully logged out!')">Logout</a></li>
+
+        </div>
+
+    </ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    <div class="message">
+        {{! Display a message if one was provided. }}
+        {{#if message}}
+        <h2>{{message}}</h2>
+        {{/if}}
+    </div>
+    {{!-- Greet user --}}
+    <div class="userGreeting">
+        <div id="greetingDiv">
+            <h1>Hello {{user.fname}}</h1>
+            <h2>Welcome to your home page! </h2>
+        </div>
+        <div id="avatarDiv">
+            {{!-- avatar --}}
+            <img src="./avatars/{{user.avatar}}" id="userAvatar">
+        </div>
+
+    </div>
+
+    <hr id="userHomeHr">
+
+    {{!--------------- Favourite recipes ---------------}}
+    <h1 id="favRecipes">Your favourite recipes are:</h1>
+    {{#if favorites}}
+    {{#each favorites}}
+    <div class="starters">
+        <div class="left">
+            <h2 class="title">{{title}}</h2>
+            <i>posted by {{username}}</i>
+            <img src="./images/{{image}}" class="foodImg">
+        </div>
+        <div class="right">
+            {{!-- Favorites button --}}
+            <img class="remove_from_favourites heart" data-recipeid="{{recipeId}}" src="./images/full_heart.png"
+                title="Added to favourites"><span>Remove from favourites</span>
+            <div class="ingred">
+                <ul>
+                    {{encodeMyString ingredients}}
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="method">
+                <ol>
+                    {{encodeMyString method}}
+                </ol>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <h3 id="noFavourites">You have no favourites :(</h3>
+    {{/if}}
+
+
+    {{!--------------- Uploaded recipes ---------------}}
+    <hr id="userHomeHr">
+    <h1 id="uploadedRecipes">Your uploaded recipes are:</h1>
+    {{#if myrecipes}}
+    {{#each myrecipes}}
+    <div class="starters">
+        <div class="left">
+            <h2 class="title">{{title}}</h2>
+            <i>posted by {{username}}</i>
+            <img src="./images/{{image}}" class="foodImg">
+        </div>
+        <div class="right">
+
+            {{!-- delete button --}}
+            <img src="./images/delete.png" class="delete_recipe delete" data-recipeid="{{recipeId}}"
+                title="Delete Recipe"><span>Delete Recipe</span>
+
+            <div class="ingred">
+                <ul>
+                    {{encodeMyString ingredients}}
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="method">
+                <ol>
+                    {{encodeMyString method}}
+                </ol>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <h3 id="noRecipes">You have not uploaded any recipes :(</h3>
+    {{/if}}
+
+    <div class="uploadedDiv">
+        <p>{{recipe_content}}</p>
+    </div>
+
+    <br>
+
+
+    <div class="toTop"><a href="#"><img src="./images/arrow.png" id="arrow"></a>
+        <p id="toTopText">Back to <br> top</p>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+<head>
+    <link rel="stylesheet" href="./css/comments.css">
+    <link rel="stylesheet" href="./css/quill.snow.css">
+</head>
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo"></a>
+    </div>
+
+</header>
+
+
+{{!-- Navbar --}}
+{{#if user}}
+
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+
+            <li id="sortBy">Filter
+                <ul>
+                    <li>Title</li>
+                    <li>Username</li>
+                    <li>Date</li>
+                    <li id="category">
+                        Category
+                        <ul id="categoryList">
+                            <li>Starters</li>
+                            <li>Mains</li>
+                            <li>Desserts</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="editProfileNav"><a href="./editprofile">Edit Profile</a></li>
+
+            <li id="recipeNav">My Recipes
+                <ul>
+                    <li><a href="./userhome#favRecipes">Favourites</a></li>
+                    <li><a href="./userhome#uploadedRecipes">Uploaded</a></li>
+                    <li><a href="./addrecipe">Add Recipe</a></li>
+                </ul>
+            </li>
+
+        </div>
+
+
+        <div class="navRight">
+            <li><a href="./login" class="loginButton"><img src="./avatars/{{user.avatar}}" width="50" width="50"
+                        title="Back to your profile page!">
+                </a></li>
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+            <li><a href="./logouthome" onclick="alert('Successfully logged out!')">Logout</a></li>
+
+        </div>
+
+    </ul>
+</div>
+
+{{else}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="navRight">
+            <li><a href="./login" class="loginButton">Login</a></li>
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+            <li><a href="./logouthome">Logout</a></li>
+            {{/if}}
+
+
+        </div>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+
+    {{! Display a message if one was provided. }}
+    {{#if message}}
+    <p class="message">{{message}}</p>
+    {{/if}}
+
+
+
+    <div class="commentsContent">
+        {{#each recipe}}
+        <h2 class="title">{{title}}</h2>
+        <i>posted by {{username}}</i>
+        <img src="./images/{{image}}" class="foodImg">
+
+        <div id="commentText">
+            <form id="addComment" action="./addComment" method="POST">
+                <input type="text" name="recipeId" id="recipeId" value="{{recipeId}}" style="display:none;">
+                <div class="recipeComments">
+                    <textarea id="content" name="content" required></textarea>
+                </div>
+                <div>
+                    <button type="submit" id="post">Post</button>
+                </div>
+            </form>
+        </div>
+        {{/each}}
+        <hr>
+        {{#if comments}}
+        {{#each comments}}
+        <div id="commentSection">
+            <div id="author">
+                <strong>{{content}}</strong> <i>posted by {{fname}} {{lname}}</i> at {{dateCommented}}
+            </div>
+
+
+            <div id="CommentIcons">
+                <button id="likebtn"><img src="./images/upvote.png" width="30px"></button>
+                <input type="number" id="input1" value="0" name="">
+                <button id="dislikebtn"><img src="./images/downvote.png" width="30px"></button>
+                <input type="number" id="input1">
+
+                {{#if_eq authorId 'eq' ../loggedInUserId}}
+                <a href=""><img src="./images/delete.png" data-authorid="{{authorId}}" data-recipeid="{{recipeId}}"
+                        data-commentid="{{commentId}}" class="delete_comment" title="Delete comment"></a>
+                {{/if_eq}}
+            </div>
+            {{#if children}}
+            {{#each children}}
+            <div id="commentSection" style="margin-left: 20px;">
+                <div id="author">
+                    <strong>{{content}}</strong> <i>posted by {{fname}} {{lname}}</i> at {{dateCommented}}
+                </div>
+
+
+                <div id="CommentIcons">
+                    <button id="likebtn"><img src="./images/upvote.png" width="30px"></button>
+                    <input type="number" id="input1" value="0" name="">
+                    <button id="dislikebtn"><img src="./images/downvote.png" width="30px"></button>
+                    <input type="number" id="input1">
+
+                    {{#if_eq authorId 'eq' ../loggedInUserId}}
+                    <a href=""><img src="./images/delete.png" data-authorid="{{authorId}}" data-recipeid="{{recipeId}}"
+                            data-commentid="{{commentId}}" class="delete_comment" title="Delete comment"></a>
+                    {{/if_eq}}
+                </div>
+                {{#if children}}
+                {{#each children}}
+                <div id="commentSection" style="margin-left: 20px;">
+                    <div id="author">
+                        <strong>{{content}}</strong> <i>posted by {{fname}} {{lname}}</i> at {{dateCommented}}
+                    </div>
+
+
+                    <div id="CommentIcons">
+                        <button id="likebtn"><img src="./images/upvote.png" width="30px"></button>
+                        <input type="number" id="input1" value="0" name="">
+                        <button id="dislikebtn"><img src="./images/downvote.png" width="30px"></button>
+                        <input type="number" id="input1">
+
+                        {{#if_eq authorId 'eq' ../loggedInUserId}}
+                        <a href=""><img src="./images/delete.png" data-authorid="{{authorId}}"
+                                data-recipeid="{{recipeId}}" data-commentid="{{commentId}}" class="delete_comment"
+                                title="Delete comment"></a>
+                        {{/if_eq}}
+                    </div>
+                </div>
+                {{/each}}
+                {{/if}}
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+        {{/each}}
+        {{else}}
+        <h3 id="noComments">There are no comments for this recipe</h3>
+        {{/if}}
+
+    </div>
+
+</div>

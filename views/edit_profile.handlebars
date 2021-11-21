@@ -1,0 +1,142 @@
+<head>
+    <link rel="stylesheet" href="./css/edit_profile.css">
+</head>
+
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo" title="Return to the Easy Byte Homepage!"></a>
+    </div>
+
+</header>
+
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+
+            <li id="recipeNav">My Recipes
+                <ul>
+                    <li><a href="/userhome#favRecipes">Favourites</a></li>
+                    <li><a href="/userhome#uploadedRecipes">Uploaded</a></li>
+                    <li><a href="./addrecipe">Add Recipe</a></li>
+                </ul>
+            </li>
+        </div>
+
+
+        <div class="navRight">
+
+            <li><a href="./login" class="loginButton"><img src="./avatars/{{user.avatar}}" width="50" width="50">
+                </a></li>
+            <li><a href="./logouthome">Logout</a></li>
+
+        </div>
+    </ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    <div class="message">
+        {{! Display a message if one was provided. }}
+        {{#if message}}
+        <p>{{message}}</p>
+        {{/if}}
+    </div>
+    <h1>Edit Profile:
+        <hr>
+    </h1>
+
+    <form action="./editprofile" method="POST" id="editForm">
+
+        <div class="flex-col mb">
+            <label for="txtUsernameE">Username:</label>
+            <input type="text" name="editUsername" id="txtUsernameE" value="{{user.username}}" required>
+            <span id="usernameError" style="color: red;"></span>
+        </div>
+
+        <div>
+            <label for="txtPasswordE">Change your password: </label>
+            <input type="password" name="editPassword" id="txtPasswordE" value="{{user.password}}">
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtRePasswordE">Re-enter the new password:</label>
+            <input type="password" name="editRepassword" id="txtRePasswordE" value="{{user.password}}" required>
+
+            <span id="passwordError" style="color: red;"></span>
+        </div>
+
+        <div class="avatar-list">
+            <label for="avatarE" class="avatar-label">Select your new avatar:</label>
+
+            <div class="avatar-list-content">
+                <label class="avatars">
+                    <input type="radio" name="editAvatar" value="sloth.png" id="editSloth" />
+                    <img src="./avatars/sloth.png" width="50" height="50">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="editAvatar" value="avo.webp" id="editAvo" />
+                    <img src="./avatars/avo.webp" width="50" height="50">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="editAvatar" value="coffee.webp" id="editCoffee" />
+                    <img src="./avatars/coffee.webp" width="50" height="50">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="editAvatar" value="bear.png" id="editBear" />
+                    <img src="./avatars/bear.png" width="50" height="50">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="editAvatar" value="batman.webp" id="editBatman" />
+                    <img src="./avatars/batman.webp" width="50" height="50">
+                </label>
+            </div>
+
+        </div>
+
+        <div>
+            <label for="txtFirstNameE">First Name: </label>
+            <input type="text" name="editFirstName" id="txtFirstNameE" value="{{user.fname}}">
+        </div>
+        <div>
+            <label for="txtLastNameE">Last Name: </label>
+            <input type="text" name="editLastName" id="txtLastNameE" value="{{user.lname}}">
+        </div>
+
+        <div class="flex-col mb">
+            <label for="dateBirthdayE">Date of birth:</label>
+            <input type="date" name="editBirthday" id="dateBirthdayE" value="{{user.birthday}}" min="1900-01-01"
+                max="2021-05-26" required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtDescriptionE">Description:</label>
+            <input type="text" name="editDescription" id="txtDescriptionE" value="{{user.description}}" required>
+        </div>
+
+        <div>
+            <button type="submit" id="submitEdit" class="submit">Submit!</button>
+        </div>
+
+    </form>
+
+    <div>
+        <button type="submit" id="deleteAccountBtn" data-userId="{{user.userId}}"
+            onclick="alert('Account successfully deleted')">Delete Account</button>
+    </div>
+</div>

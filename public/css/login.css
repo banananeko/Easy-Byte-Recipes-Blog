@@ -1,0 +1,23 @@
+.container{
+    background-color:rgb(236, 198, 164);
+    width: 50%;
+    text-align: center;
+    font-size: 18pt;
+    margin: auto;
+    margin-top: 7%;
+    border-radius: 10px;
+    padding: 5px;
+    padding-bottom: 50px;
+    box-shadow: 2px 2px 6px black;
+}
+
+
+
+/* ----------- RESPONSIVE DESIGN - Adapt to mobile ------------ */
+@media (max-width: 1100px) {
+
+    .container{
+        padding: 15px;
+    }
+
+}

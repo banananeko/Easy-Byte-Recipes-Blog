@@ -1,0 +1,150 @@
+<head>
+    <link rel="stylesheet" href="./css/add_recipe.css">
+    <link rel="stylesheet" href="./css/quill.snow.css">
+</head>
+
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo" title="Return to the Easy Byte Homepage!"></a>
+    </div>
+
+</header>
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+            <li id="editProfileNav"><a href="./editprofile">Edit Profile</a></li>
+
+            <li id="recipeNav">My Recipes
+                <ul>
+                    <li><a href="/userhome#favRecipes">Favourites</a></li>
+                    <li><a href="/userhome#uploadedRecipes">Uploaded</a></li>
+                </ul>
+            </li>
+        </div>
+
+
+        <div class="navRight">
+
+            <li><a href="./login" class="loginButton"><img src="./avatars/{{user.avatar}}" width="50" width="50">
+                </a></li>
+            <li><a href="./logouthome">Logout</a></li>
+
+        </div>
+    </ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    <div class="message">
+        {{! Display a message if one was provided. }}
+        {{#if message}}
+        <p>{{message}}</p>
+        {{/if}}
+    </div>
+
+    <h1>Add A New Recipe
+        <hr>
+    </h1>
+
+    <p><strong>Step One: Upload an image (if any)</strong></p>
+
+    {{#if filename}}
+    <p>{{filename}}</p>
+    {{else}}
+    <form action="/uploadFile" method="POST" enctype="multipart/form-data">
+        <input type="file" name="recipe_picture" id="recipe_picture" accept=".png,.jpg,.jpeg,.bmp,.gif"
+            onChange="getFileNameWithExt(event)">
+        <button type="submit" id="upload">Upload</button>
+    </form>
+    {{/if}}
+
+    {{!-- Hidden input to send filename to client.js --}}
+    <input type="text" name="filenamecache" id="filenamecache" value="{{filename}}" style="display:none;">
+    <p><strong>Step Two: Enter recipe details</strong></p>
+    <form action="/test?filename={{filename}}" method="POST" enctype="multipart/form-data" id='addRecipe'>
+
+        <div class="recipeName">
+            <label for="recipe_name">Recipe Name<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="text" name="recipe_name" id="recipe_name" placeholder='Name' required>
+        </div>
+        <div class="recipeCategory">
+            <label for="recipe_category">Recipe Category<span style="color: red; font-size: 20px">*</span>:</label>
+            <select name="recipe_category" id="recipe_category" required>
+                <option value="">Select Category</option>
+                <option value="1">Starter</option>
+                <option value="2">Main</option>
+                <option value="3">Dessert</option>
+            </select>
+        </div>
+        <br>
+        <div class="recipeIngredients">
+            <label for="recipe_ingredients">Recipe Ingredients<span
+                    style="color: red; font-size: 20px">*</span>:</label>
+            <div name="recipe_ingredients" id="recipe_ingredients" style="background-color: white;"></div>
+            <span id="ingredientsError" style="color: red;"></span>
+        </div>
+
+        <div class="recipeMethod">
+            <label for="recipe_method">Recipe Method<span style="color: red; font-size: 20px">*</span>:</label>
+            <div name="recipe_method" id="recipe_method" style="background-color: white;"></div>
+            <span id="methodError" style="color: red;"></span>
+        </div>
+        <button type="submit">Add Recipe</button>
+
+    </form>
+</div>
+
+
+<!-- Include the Quill library -->
+<script src="./quill.js"></script>
+<!-- Initialize Quill editor -->
+<script>
+    let recipe_ingredients = new Quill('#recipe_ingredients', {
+        theme: 'snow',
+        placeholder: 'Enter your recipe ingredients'
+    });
+
+
+    let recipe_method = new Quill('#recipe_method', {
+        theme: 'snow',
+        placeholder: 'Enter your recipe method'
+    });
+</script>
+
+{{!-- Change file name for image uploading --}}
+<script>
+    function getFileNameWithExt(event) {
+
+        if (!event || !event.target || !event.target.files || event.target.files.length === 0) {
+            return;
+        }
+
+        const name = event.target.files[0].name;
+        const lastDot = name.lastIndexOf('.');
+
+        const fileName = name.substring(0, lastDot);
+        const ext = name.substring(lastDot + 1);
+
+        const fileNameInput = document.querySelector("#fileName");
+
+        if (fileNameInput) {
+            fileNameInput.value = fileName + '.' + ext;
+        }
+    }
+</script>

@@ -1,0 +1,131 @@
+<head>
+    <link rel="stylesheet" href="./css/new_account.css">
+</head>
+
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo" title="Return to the Easy Byte Homepage!"></a>
+    </div>
+
+</header>
+
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+        </div>
+    </ul>
+</div>
+
+
+<div class="navRight">
+
+
+</div>
+
+</ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    <div class="message">
+        {{! Display a message if one was provided. }}
+        {{#if message}}
+        <p class="message">{{message}}</p>
+        {{/if}}
+    </div>
+
+    <h1 id="newAccTitle">New Account</h1>
+    <hr>
+    <form action="./newAccount" method="POST">
+        <div class="flex-col mb">
+            <label for="txtUsername">Username<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="text" name="username" id="txtUsername" placeholder='Username' required>
+
+            <span id="usernameError" style="color: red;"></span>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtPassword">Password<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="password" name="password" id="txtPassword" placeholder='Password' required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtRePassword">Re-enter password<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="password" name="repassword" id="txtRePassword" placeholder='Confirm Password' required>
+
+            <span id="passwordError" style="color: red;"></span>
+        </div>
+
+        <div class="avatar-list">
+            <label for="avatar" class="avatar-label">Select your avatar<span
+                    style="color: red; font-size: 20px">*</span>:</label>
+
+            <div class="avatar-list-content">
+                <label class="avatars">
+                    <input type="radio" name="avatar" value="sloth.png" />
+                    <img src="./avatars/sloth.png" width="60" height="60">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="avatar" value="avo.webp" />
+                    <img src="./avatars/avo.webp" width="60">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="avatar" value="coffee.webp" />
+                    <img src="./avatars/coffee.webp" width="60">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="avatar" value="bear.png" />
+                    <img src="./avatars/bear.png" width="60">
+                </label>
+                <label class="avatars">
+                    <input type="radio" name="avatar" value="batman.webp" />
+                    <img src="./avatars/batman.webp" width="60">
+                </label>
+            </div>
+
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtFname">First name<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="text" name="fname" id="txtFname" placeholder='First Name' required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtLname">Last name<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="text" name="lname" id="txtLname" placeholder='Last Name' required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="dateBirthday">Date of birth<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="date" name="birthday" id="dateBirthday" value="2021-05-26" min="1900-01-01" max="2021-05-26"
+                required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtDescription">Description<span style="color: red; font-size: 20px">*</span>:</label>
+            <input type="text" name="description" id="txtDescription" placeholder='About yourself!' required>
+        </div>
+
+        <div class="flex-row justify-sb align-center">
+            <button type="submit" id="submit" class="submit">Create account</button>
+        </div>
+    </form>
+
+</div>

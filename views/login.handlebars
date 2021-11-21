@@ -1,0 +1,62 @@
+<head>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<header>
+    <div id="header1">
+        <img src="./images/header1.png">
+    </div>
+    <div id="header2">
+        <img src="./images/header2.png">
+    </div>
+    <div>
+        <a href="./"><img src="./images/logo3.png" id="logo" title="Return to the Easy Byte Homepage!"></a>
+    </div>
+</header>
+
+{{!-- Navbar --}}
+<div class="navbar">
+    <ul>
+        <div class="navLeft">
+
+            <li id="home"><a href="/">Home</a>
+                <ul>
+                    <li><a href="/#startersDiv">Starters</a></li>
+                    <li><a href="/#mainsDiv">Mains</a></li>
+                    <li><a href="/#dessertsDiv">Desserts</a></li>
+                </ul>
+            </li>
+        </div>
+    </ul>
+</div>
+
+{{!-- Body --}}
+<div class="container">
+    <div class="message">
+        {{! Display a message if one was provided. }}
+        {{#if message}}
+        <p>{{message}}</p>
+        {{/if}}
+    </div>
+
+    <h1>Login
+        <hr>
+    </h1>
+    <form action="/login" method="POST" id="login-form">
+        <div class="flex-col mb">
+            <label for="txtUsername">Username:</label>
+            <input type="text" name="username" id="txtUsername" placeholder='Username' required>
+        </div>
+
+        <div class="flex-col mb">
+            <label for="txtPassword">Password:</label>
+            <input type="password" name="password" id="txtPassword" placeholder='Password' required>
+        </div>
+
+        <div class="flex-row justify-sb align-center">
+            <button type="submit" id="loginButton">Log in</button>
+        </div>
+    </form>
+    <p>Don't have an account? <a href="./newAccount">Create one here.</a></p>
+
+</div>

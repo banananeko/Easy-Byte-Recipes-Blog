@@ -1,0 +1,112 @@
+.foodImg{
+    width: 50%;
+    margin-bottom: 5%;
+}
+
+.message {
+    font-family: monospace;
+    color: black;
+    font-size: 20pt;
+    text-align: center;
+}
+
+textarea {
+    height: 10em;
+    width: calc(100% - 30px);
+}
+
+.container{
+    padding-bottom: 100px;
+}
+
+#editProfileNav, #recipeNav{
+    width: 200px;
+}
+
+#recipeplaceholder{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.commentsContent{
+    width: 50%;
+    margin:auto;
+    margin-top: 100px;  
+}
+
+#commentSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#CommentIcons *{
+    margin: 0;
+}
+
+#commentText{
+    background-color: rgb(236, 198, 164);
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#author{
+    padding-bottom: 10px;
+}
+
+
+
+#voting{
+    display: flex; 
+    margin-top: 10px;
+    margin-bottom: 100px;
+    border: 3px solid #303030;
+    padding: 10px;
+   
+}
+
+input{
+    width: 30px;
+    border: none;
+    background: none;
+    font-size: 14pt;
+    pointer-events: none;
+    margin-left: 50px;
+}
+
+#likebtn, #dislikebtn{
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding-left: 20px;
+    margin: auto;
+}
+
+
+button:active{
+    transform: scale(1.2);
+}
+
+.postsubmitbtn{
+    margin: auto;
+    padding: 10px;
+    padding-left: 100px;
+}
+
+.postsubmitbtn * {
+    width: 100px;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+
+#postButton{
+    background-color: greenyellow;
+}
+
+/* #delete{
+    background-color: rgb(255, 89, 89);
+} */
+
+#comments{
+    text-align: center;
+}
